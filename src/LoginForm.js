@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm=()=>{
 const[userName,setUserName]=useState("");
 const[password,setPassword]=useState("");
 const[loggedIn,setLoggedIn]=useState(false);
+
+const navigate = useNavigate();
     const userNameHandler=(event)=>{
         setUserName(event.target.value);
     }
@@ -17,6 +20,7 @@ const[loggedIn,setLoggedIn]=useState(false);
         console.log(userName);
         console.log(password);
         setLoggedIn(true);
+        navigate("/register")
     }
 
     return(

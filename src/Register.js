@@ -1,21 +1,31 @@
 import { useState } from "react"
+import { Link } from "react-router-dom";
 
 const Register=()=>{
     const[firstName,setFirstName]=useState("");
     const[lastName,setLastName]=useState("");
     const[city,setCity]=useState("");
     const[age,setAge]=useState("");
-    const [selectedValue, setSelectedValue] = useState('BTech');
+    const [qualification, setQualification] = useState('BTech');
     const[registered,setRegistered]=useState(true); 
     
     const RegisterHandler=(event)=>{
         event.preventDefault();
-        console.log(selectedValue);    
+        console.log(qualification);    
         setRegistered(false); 
+       const registeredData={
+            firstName:firstName,
+            lastName:lastName,
+            city:city,
+            age:age,
+
+        }
+        localStorage.setItem('registredValue', JSON.stringify(registeredData));
 
     }
     const firstNameHandler=(event)=>{
         setFirstName(event.target.value);
+       
 
     }
     const lastNameHandler=(event)=>{
@@ -29,8 +39,8 @@ const Register=()=>{
         setAge(event.target.value);
         
     }
-    const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+    const qualificationHandler = (event) => {
+        setQualification(event.target.value);
     };
     return(
         <div>
@@ -56,7 +66,7 @@ const Register=()=>{
            required />  
 
            <label>Qualification</label> 
-           <select value={selectedValue} onChange={handleChange}>
+           <select value={qualification} onChange={qualificationHandler}>
            <option value="BTech">BTech</option>
            <option value="MTech">MTech</option>
            <option value="BSC">BSC</option>
@@ -70,8 +80,8 @@ const Register=()=>{
 }
            {!registered&&<p>Thanks for Registering</p>}
 
-        
-          
+           <Link to="/login">Login</Link>
+     
         </div>
     );
    
