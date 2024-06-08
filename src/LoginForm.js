@@ -20,8 +20,9 @@ const navigate = useNavigate();
         console.log(userName);
         console.log(password);
         setLoggedIn(true);
-        navigate("/register")
+      
     }
+    loggedIn&&navigate("/register")
 
     return(
         <div>
@@ -41,6 +42,7 @@ const navigate = useNavigate();
             <button onClick={loginHandler} >Login</button>  
              </div>
              </form>
+             
              {loggedIn&&<p>Login successful</p>}
         </div>
 
