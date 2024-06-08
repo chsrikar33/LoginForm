@@ -5,11 +5,13 @@ const Register=()=>{
     const[lastName,setLastName]=useState("");
     const[city,setCity]=useState("");
     const[age,setAge]=useState("");
-    const [selectedValue, setSelectedValue] = useState('BTech'); 
+    const [selectedValue, setSelectedValue] = useState('BTech');
+    const[registered,setRegistered]=useState(true); 
     
     const RegisterHandler=(event)=>{
         event.preventDefault();
-        console.log(selectedValue);
+        console.log(selectedValue);    
+        setRegistered(false); 
 
     }
     const firstNameHandler=(event)=>{
@@ -32,7 +34,7 @@ const Register=()=>{
     };
     return(
         <div>
-            <form onSubmit={RegisterHandler}>
+          {registered&&<form onSubmit={RegisterHandler}>
           <label>FirstName</label>
           <input type="text" id="text"
           onChange={firstNameHandler}
@@ -65,8 +67,10 @@ const Register=()=>{
            <button type="submit">Register</button>
 
            </form>
+}
+           {!registered&&<p>Thanks for Registering</p>}
 
-
+        
           
         </div>
     );

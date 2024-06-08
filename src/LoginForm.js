@@ -3,6 +3,7 @@ import { useState } from "react";
 const LoginForm=()=>{
 const[userName,setUserName]=useState("");
 const[password,setPassword]=useState("");
+const[loggedIn,setLoggedIn]=useState(false);
     const userNameHandler=(event)=>{
         setUserName(event.target.value);
     }
@@ -10,9 +11,12 @@ const[password,setPassword]=useState("");
         setPassword(event.target.value);
     }
 
-    const loginHandler=()=>{
+
+    const loginHandler=(event)=>{
+        event.preventDefault();
         console.log(userName);
         console.log(password);
+        setLoggedIn(true);
     }
 
     return(
@@ -33,7 +37,10 @@ const[password,setPassword]=useState("");
             <button onClick={loginHandler} >Login</button>  
              </div>
              </form>
+             {loggedIn&&<p>Login successful</p>}
         </div>
+
+      
 
     );
 }
